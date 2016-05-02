@@ -1,13 +1,18 @@
 package footballRest;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSeeAlso;
+//import javax.xml.bind.annotation.XmlElementWrapper;
+//import javax.xml.bind.annotation.XmlElement;
 
 @XmlRootElement
+@XmlSeeAlso({Players.class})
 public class Team {
     private String symbol;
     private Double price;
     private String currency;
     private String country;
+    private Players playerList;
 
     public Team() {
     }
@@ -17,8 +22,13 @@ public class Team {
         this.price = price;
         this.currency = currency;
         this.country = country;
+        this.playerList = new Players();
     }
 
+    public Players getPlayerList(){
+    	return playerList;
+    }
+    
     public String getSymbol() {
         return symbol;
     }

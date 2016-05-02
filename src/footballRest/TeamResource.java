@@ -24,6 +24,12 @@ public class TeamResource {
 
         return team;
     }
+    
+    @GET
+    public Players getPlayers(){
+    	Players p = new Players();
+    	return p;
+    }
 
     @POST
     @Consumes("application/x-www-form-urlencoded")
