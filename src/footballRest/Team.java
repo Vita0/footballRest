@@ -1,18 +1,26 @@
 package footballRest;
 
+import java.util.ArrayList;
+
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 //import javax.xml.bind.annotation.XmlElementWrapper;
 //import javax.xml.bind.annotation.XmlElement;
 
-@XmlRootElement
-@XmlSeeAlso({Players.class})
+//@XmlRootElement(name = "Team")
+@XmlSeeAlso({LeagueList.class})
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Team {
     private String symbol;
     private Double price;
     private String currency;
     private String country;
-    private Players playerList;
+    //private Players playerList;
+    //@XmlElement(name = "player")
+    private ArrayList<String> playerList;
 
     public Team() {
     }
@@ -24,10 +32,10 @@ public class Team {
         this.country = country;
         this.playerList = new Players();
     }
-
-    public Players getPlayerList(){
-    	return playerList;
-    }
+    
+//    public Players getPlayerList(){
+//    	return playerList;
+//    }
     
     public String getSymbol() {
         return symbol;

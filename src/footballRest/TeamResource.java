@@ -1,5 +1,7 @@
 package footballRest;
 
+import java.util.ArrayList;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -26,9 +28,20 @@ public class TeamResource {
     }
     
     @GET
-    public Players getPlayers(){
-    	Players p = new Players();
-    	return p;
+    public LeagueList getLeagueList(){
+    	ArrayList<League> al = new ArrayList<League>();
+    	League l = new League();
+    	l.league_id = 3;
+    	l.name = "RRRR";
+    	l.kind = "lol";
+    	al.add(l);
+    	League ll = new League();
+    	ll.league_id = 12;
+    	ll.name = "LLLL";
+    	ll.kind = "olo";
+    	al.add(ll);
+    	LeagueList leagueList = new LeagueList(al);
+    	return leagueList;
     }
 
     @POST

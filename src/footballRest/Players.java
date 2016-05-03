@@ -9,7 +9,7 @@ public class Players extends ArrayList<String>{
 		this.add("Dzyuba");
 		this.add("Shatov");
 	}
-	@XmlElement(name = "player")
+	//@XmlElement(name = "player")
 	public ArrayList<String> getPlayers(){
 		return this;
 	}
