@@ -4,39 +4,46 @@ import java.util.ArrayList;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSeeAlso;
-
-//@XmlRootElement(name = "LeagueList")
-//@XmlSeeAlso({League.class})
-//public class LeagueList extends ArrayList<League>{
-//}
+//import javax.xml.bind.annotation.XmlSeeAlso;
 
 @XmlRootElement(name="LeagueList")
-public class LeagueList {
+public class LeagueList implements FieldList{
 	private int count;
-	private ArrayList<League> leagueList;
+	private ArrayList<Field> list;
 
-	public LeagueList() {}
+	public LeagueList() {
+        list = new ArrayList<Field>();
+        count = 0;
+	}
 	
-	public LeagueList(ArrayList<League> leagueList) {
-		this.leagueList = leagueList;
+	public LeagueList(ArrayList<Field> leagueList) {
+		this.list = leagueList;
 		this.count = leagueList.size();
 	}
 
+	@Override
+	@XmlElement(name="count")
 	public int getCount() {
 		return count;
 	}
+	@Override
 	public void setCount(int count) {
 		this.count = count;
 	}
-	
+
+	@Override
 	@XmlElement(name="league")
-	public ArrayList<League> getLeagueList() {
-		return leagueList;
+	public ArrayList<Field> getFieldList() {
+		return list;
 	}
-//	public void setList(ArrayList<League> leagueList) {
-//		this.leagueList = leagueList;
-//		this.count = leagueList.size();
-//	}
-	
+	@Override
+	public void setList(ArrayList<Field> leagueList) {
+		this.list = leagueList;
+		this.count = leagueList.size();
+	}
+	@Override
+	public void add(Field field){
+        list.add(field);
+        count = list.size();
+	}
 }

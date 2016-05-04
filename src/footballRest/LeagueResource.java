@@ -11,8 +11,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
-@Path("/team")
-public class TeamResource {
+@Path("/league")
+public class LeagueResource {
     @Produces({"application/xml", "application/json"})
 	@Path("{symbol}")
     @GET
@@ -29,20 +29,31 @@ public class TeamResource {
     
     @GET
     public LeagueList getLeagueList(){
-    	ArrayList<League> al = new ArrayList<League>();
-    	League l = new League();
-    	l.league_id = 3;
-    	l.name = "RRRR";
-    	l.kind = "lol";
-    	al.add(l);
-    	League ll = new League();
-    	ll.league_id = 12;
-    	ll.name = "LLLL";
-    	ll.kind = "olo";
-    	al.add(ll);
-    	LeagueList leagueList = new LeagueList(al);
-    	return leagueList;
+        ConnectorDB db = new ConnectorDB();
+        FieldList fl = new LeagueList();
+        fl = db.selectFieldList("LEAGUE");
+        LeagueList ll = new LeagueList(fl.getFieldList());
+        db.free();
+        return ll;
     }
+    
+    //@Path("/1")
+    //@GET
+//    public LeagueList getLeagueListTmp(){
+//    	LeagueList lll = new LeagueList();
+//    	//ArrayList<League> al = new ArrayList<League>();
+//    	League l = new League();
+//    	l.league_id = 3;
+//    	l.name = "RRRR";
+//    	l.kind = "lol";
+//    	lll.add(l);
+//    	League ll = new League();
+//    	ll.league_id = 12;
+//    	ll.name = "LLLL";
+//    	ll.kind = "olo";
+//    	lll.add(ll);
+//    	return lll;
+//    }
 
     @POST
     @Consumes("application/x-www-form-urlencoded")
